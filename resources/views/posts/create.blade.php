@@ -14,8 +14,8 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="/" method="POST" enctype="multipart/form-data">
-                            
+                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                        
                             @csrf
 
                             <div class="form-group">
@@ -53,8 +53,10 @@
                                     </div>
                                 @enderror
                             </div>
+
                             <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
                             <button type="reset" class="btn btn-md btn-warning">RESET</button>
+
                         </form> 
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="/create" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
+                        <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -46,7 +46,6 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
-                                        
                                     </td>
                                 </tr>
                               @empty

@@ -68,7 +68,7 @@ class PostController extends Controller
         ]);
 
         //redirect to index
-        return redirect('/')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
     
     /**
@@ -147,7 +147,7 @@ class PostController extends Controller
         }
 
         //redirect to index
-        return redirect('/')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -168,6 +168,6 @@ class PostController extends Controller
         $post->delete();
 
         //redirect to index
-        return redirect('/')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

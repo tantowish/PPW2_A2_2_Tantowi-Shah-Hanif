@@ -13,6 +13,8 @@ use Illuminate\Http\RedirectResponse;
 //import Facade "Storage"
 use Illuminate\Support\Facades\Storage;
 
+use App\Models\Post;
+
 class PostController extends Controller
 {    
     /**
@@ -23,10 +25,10 @@ class PostController extends Controller
     public function index(): View
     {
         //get posts
-        Post::latest()->paginate(5);
+        $posts = Post::latest()->paginate(5);
 
         //render view with posts
-        return view('index', compact('posts'));
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -36,7 +38,7 @@ class PostController extends Controller
      */
     public function create(): View
     {
-        return view('create');
+        return view('posts.create');
     }
  
     /**
@@ -45,11 +47,11 @@ class PostController extends Controller
      * @param  mixed $request
      * @return RedirectResponse
      */
-    public function store($request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         //validate form
         $this->validate($request, [
-            'image'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'image'     => 'required|image|mimetypes:image/jpeg,image/jpg,image/png|max:2048',
             'title'     => 'required|min:5',
             'content'   => 'required|min:10'
         ]);
@@ -66,7 +68,7 @@ class PostController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect('/')->with(['success' => 'Data Berhasil Disimpan!']);
     }
     
     /**
@@ -145,7 +147,7 @@ class PostController extends Controller
         }
 
         //redirect to index
-        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect('/')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -154,7 +156,7 @@ class PostController extends Controller
      * @param  mixed $post
      * @return void
      */
-    public function destroy($post): RedirectResponse
+    public function destroy(Post $post): RedirectResponse
     {
         //get post by ID
         $post = Post::findOrFail();
@@ -166,6 +168,6 @@ class PostController extends Controller
         $post->delete();
 
         //redirect to index
-        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect('/')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

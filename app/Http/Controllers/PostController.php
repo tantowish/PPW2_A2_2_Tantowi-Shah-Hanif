@@ -92,7 +92,7 @@ class PostController extends Controller
      * @param  mixed $id
      * @return void
      */
-    public function edit(string $id): View
+    public function edit(int $id): View
     {
         //get post by ID
         $post = Post::findOrFail($id);
@@ -108,7 +108,7 @@ class PostController extends Controller
      * @param  mixed $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, string $id): RedirectResponse
     {
         //validate form
         $this->validate($request, [
